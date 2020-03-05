@@ -2,15 +2,9 @@ const database = require ('./database');
 
 const model = {
 	get: async (columns = {}, where = {}) => {
-		return new Promise((resolve, reject)=>{
-			let data = database.model.select('users', columns, where);
-			return resolve({result: data});
-		}).then((resolve)=>{
-			console.log("returning data at users files");
-			return resolve;
-		})
+		return await database.model.select('users', columns, where)
+		console.log("users.save get");
 	},
-
 	save: async (options = {}) => {
 		console.log("users.save called");
 		return await database.model.insert('users', options)

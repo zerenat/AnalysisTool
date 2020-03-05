@@ -6,13 +6,14 @@ const users = require ('./users');
 const promise = require('Promise');
 
 //general register request===============================
-
+//THIS GETS CALLED=======================================
 router.post('/register', async function (request, response) {
 
     const params = parseRequest(request);
     console.log("register");
     let columns = ["users.email"];
     let conditions = ["users.email = 'Johnon@gmail.com'", "users.firstname = 'John'"];
+    console.log('blah')
     let resp = await users.get(columns, conditions);
 
     response.send(resp);

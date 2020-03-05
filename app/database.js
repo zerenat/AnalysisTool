@@ -1,14 +1,39 @@
-const mysql = require('mysql2/promise');
+const mysql = require('mysql');
 const dbInfo = require("../config.json");
 const promise = require ('Promise');
 
-const query = async (SQLquery, ...arguments) => {
-  const connection = await mysql.createConnection({
-    host: dbInfo.host,
-    user: dbInfo.user,
-    password: dbInfo.password,
-    database: dbInfo.database
-  })
+// const query = async (SQLquery, ...arguments) => {
+//   const connection = await mysql.createConnection({
+//     host: dbInfo.host,
+//     user: dbInfo.user,
+//     password: dbInfo.password,
+//     database: dbInfo.database
+//   })
+
+//   return new Promise ((resolve, reject) =>{
+//   	connection.query(SQLquery, arguments, (err, result) =>{
+//   		if(err){
+//   			console.log("error");
+//   			return reject(err);
+//   		}
+//   		console.log(result);
+//   		return resolve({result: result});
+//   	})
+//   })
+
+  // const result = await connection.query(query, arguments[0])
+  // connection.end()
+
+  // return result;
+// }
+
+const query = (SQLquery, ...arguments) => {
+	let connection = mysql.createConnection({
+		host: dbInfo.host,
+		user: dbInfo.user,
+		password: dbInfo.password,
+		database: dbInfo.database
+	})
 
   return new Promise ((resolve, reject) =>{
   	connection.query(SQLquery, arguments, (err, result) =>{
@@ -20,11 +45,6 @@ const query = async (SQLquery, ...arguments) => {
   		return resolve({result: result});
   	})
   })
-
-  const result = await connection.query(query, arguments[0])
-  connection.end()
-
-  return result;
 }
 
 
@@ -67,21 +87,28 @@ const model = {
 			}
 		}
 		
-		
+		console.log('something')
 
-		// const result = await query(selectString);
+		const result = await query(selectString);
+
+		return result;
 
   //   	return result
 
-		let promprom = new Promise((resolve, reject)=>{
-			let results = query(selectString);
-			resolve(results);
-		})
-		promprom.then((resolve)=>{
-			console.log(resolve);
-			console.log("returning data @ database SELECT method");
-			return resolve;
-		})
+  		// console.log("bla +++");
+  		// query(selectString).then(function(result){
+  		// 	console.log(result);
+  		// })
+
+		// let promprom = new Promise((resolve, reject)=>{
+		// 	let results = query(selectString);
+		// 	resolve(results);
+		// })
+		// promprom.then((resolve)=>{
+		// 	console.log("test bla: "+resolve);
+		// 	console.log("returning data @ database SELECT method");
+		// 	return resolve;
+		// })
 		
  	}
 }

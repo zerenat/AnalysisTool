@@ -9,7 +9,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.post('/login', router);
+// THIS GETS CALLED==============
 app.post('/register', router);
+//===============================
 app.delete('/user', router);
 
 app.listen(3000, ()=>{

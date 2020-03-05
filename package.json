@@ -1,0 +1,21 @@
+{
+  "name": "hexomoryserver",
+  "version": "1.0.0",
+  "description": "Server code for Hexomory game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "hexomory"
+  ],
+  "author": "M.Hein",
+  "license": "ISC",
+  "dependencies": {
+    "Promise": "^1.0.5",
+    "express": "^4.17.1",
+    "mysql-model": "0.0.3",
+    "mysql2": "^2.1.0"
+  }
+}
